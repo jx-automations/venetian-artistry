@@ -38,30 +38,41 @@ function initMobileNav() {
 }
 
 /* ---------------------------------------------------------------- */
-/* Scroll-reveal: subtle fade/slide-up via IntersectionObserver       */
+/* Scroll-reveal: subtle fade/slide-up via GSAP ScrollTrigger.        */
+/* Content has no CSS-hidden initial state, so if GSAP/ScrollTrigger  */
+/* fail to load (CDN blocked, offline) or prefers-reduced-motion is   */
+/* set, elements simply stay visible — no flash, no JS errors.        */
+/* Called again after each page injects its dynamic cards, so already-*/
+/* initialized elements are skipped via the data-reveal-ready flag.   */
 /* ---------------------------------------------------------------- */
 function initScrollReveal() {
-  const targets = document.querySelectorAll(".reveal");
+  const targets = document.querySelectorAll(".reveal:not([data-reveal-ready])");
   if (!targets.length) return;
 
-  if (!("IntersectionObserver" in window)) {
-    targets.forEach((el) => el.classList.add("is-visible"));
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const gsapReady = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
+
+  if (prefersReduced || !gsapReady) {
+    targets.forEach((el) => el.setAttribute("data-reveal-ready", ""));
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-  );
+  gsap.registerPlugin(ScrollTrigger);
 
-  targets.forEach((el) => observer.observe(el));
+  targets.forEach((el) => {
+    el.setAttribute("data-reveal-ready", "");
+    gsap.from(el, {
+      opacity: 0,
+      y: 24,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        toggleActions: "play none none none",
+      },
+    });
+  });
 }
 
 /* ---------------------------------------------------------------- */

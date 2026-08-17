@@ -18,7 +18,7 @@
 <header class="site-header">
   <div class="container">
     <a href="index.html" class="brand">
-      <img src="assets/logo/venetian-artistry-logo.jpg" alt="Venetian Artistry logo">
+      <img src="assets/logo/venetian-artistry-logo-transparent.png" alt="Venetian Artistry logo">
       <span class="brand-name">Venetian Artistry<span class="by-line">by George</span></span>
     </a>
     <nav class="nav-desktop" aria-label="Primary">
@@ -61,7 +61,10 @@
   <!-- ============================= HERO ============================= -->
   <section class="hero">
     <div class="hero-media">
-      <img src="assets/images/hero-arch-niche.jpg" alt="Hand-plastered archway finished in polished lime plaster with warm LED edge lighting">
+      <picture>
+        <source media="(min-width: 1024px)" srcset="assets/images/hero-desktop-wall-texture.jpg">
+        <img src="assets/images/hero-arch-niche.jpg" alt="Hand-plastered polished lime plaster finish with warm LED edge lighting, by Venetian Artistry">
+      </picture>
     </div>
     <div class="container hero-content">
       <span class="eyebrow">Sydney · Venetian Plaster &amp; Decorative Finishes</span>
@@ -215,6 +218,8 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
 <script>

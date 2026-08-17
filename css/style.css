@@ -256,18 +256,6 @@ p.wide { max-width: none; }
   inset: 0;
   background: linear-gradient(180deg, rgba(26,24,21,0.15) 0%, rgba(26,24,21,0.15) 40%, rgba(26,24,21,0.75) 100%);
 }
-@media (min-width: 1024px) {
-  /* The only available hero source is a small 560x1030 portrait photo; letting it
-     stretch full-bleed on wide desktop monitors upscales it well past its native
-     resolution and crops away most of its height. Capping the media width bounds
-     the upscale factor and keeps more of the image visible. */
-  .hero { background: var(--color-text); }
-  .hero-media {
-    left: 50%;
-    width: min(100%, 1400px);
-    transform: translateX(-50%);
-  }
-}
 .hero-content {
   position: relative;
   z-index: 1;
@@ -352,11 +340,11 @@ p.wide { max-width: none; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); padding-top: var(--space-6); font-size: var(--font-size-xs); color: rgba(247,244,239,0.5); }
 
 /* ============================= SCROLL REVEAL ============================= */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--duration-slow) var(--ease-standard), transform var(--duration-slow) var(--ease-standard); }
-.reveal.is-visible { opacity: 1; transform: translateY(0); }
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; }
-}
+/* No hidden initial state here by design — the reveal animation is driven
+   entirely by GSAP/ScrollTrigger (see initScrollReveal in js/main.js), which
+   sets its own "from" state via inline styles at animation time. This means
+   content stays visible by default if GSAP fails to load, is offline, or
+   prefers-reduced-motion is set — never permanently hidden without JS. */
 
 /* ============================= PROCESS STEPS ============================= */
 .process-list { counter-reset: step; display: grid; gap: var(--space-8); }
