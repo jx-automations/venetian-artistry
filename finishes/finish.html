@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="page-title">Finish — Venetian Artistry</title>
-<meta name="description" content="Venetian plaster finish detail — technique, character and ideal application.">
+<title id="page-title">Finish - Venetian Artistry</title>
+<meta name="description" content="Venetian plaster finish detail: technique, character and ideal application.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -109,7 +109,6 @@
     </div>
     <div class="footer-bottom">
       <span>© <span data-current-year></span> Venetian Artistry. All rights reserved.</span>
-      <span>Site by Claude — indicative demo build.</span>
     </div>
   </div>
 </footer>
@@ -121,7 +120,7 @@
   const slug = params.get("slug");
   const finish = FINISHES.find((f) => f.slug === slug) || FINISHES[0];
 
-  document.getElementById("page-title").textContent = `${finish.name} — Venetian Artistry`;
+  document.getElementById("page-title").textContent = `${finish.name} - Venetian Artistry`;
   document.getElementById("finish-tier").textContent = `${finish.tier} tier`;
   document.getElementById("finish-name").textContent = finish.name;
   document.getElementById("finish-tagline").textContent = finish.tagline;
@@ -130,7 +129,7 @@
   const heroMedia = document.getElementById("finish-hero-media");
   heroMedia.innerHTML = finish.image
     ? `<img src="../${finish.image}" alt="${finish.name} finish detail">`
-    : `<div class="placeholder-block">[PLACEHOLDER — ${finish.name} photo not yet available]</div>`;
+    : `<div class="placeholder-block">[PLACEHOLDER: ${finish.name} photo not yet available]</div>`;
 
   const galleryWrap = document.getElementById("finish-gallery-wrap");
   const gallery = document.getElementById("finish-gallery");

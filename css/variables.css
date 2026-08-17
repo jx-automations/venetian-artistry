@@ -62,6 +62,9 @@
   --content-padding-mobile: var(--space-4);
   --content-padding-desktop: var(--space-8);
 
+  /* ---- Card imagery: one shared aspect ratio for all project/finish cards ---- */
+  --card-aspect-ratio: 4 / 5;
+
   /* ---- Radius — sharp/architectural, not rounded-pill ---- */
   --radius-sm: 2px;
   --radius-md: 4px;

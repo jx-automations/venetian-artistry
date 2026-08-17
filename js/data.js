@@ -1,20 +1,20 @@
 /*
-  data.js — all content for Venetian Artistry lives here as plain JS objects.
+  data.js: all content for Venetian Artistry lives here as plain JS objects.
   ---------------------------------------------------------------------------
-  Update copy, prices, or swap images by editing this file only — no HTML/CSS
+  Update copy, prices, or swap images by editing this file only. No HTML/CSS
   changes required. Image paths point at assets/images (curated exports) and
   assets/videos (compressed clips). This shape is intentionally simple so it
   can migrate into a Shopify-backed catalogue later if needed.
 
   IMPORTANT: every image referenced below is a real photo or a real
-  frame pulled from George's own project videos — nothing here is stock
+  frame pulled from George's own project videos. Nothing here is stock
   photography. Where no real asset exists for a category, `image: null`
   is used deliberately and the page renders a labeled placeholder instead
   of a mismatched photo.
 */
 
 // ---------------------------------------------------------------------------
-// FINISHES — the 7 standard Venetian plaster techniques offered.
+// FINISHES: the 7 standard Venetian plaster techniques offered.
 // Descriptions are generic-but-accurate (not copied from any reference site)
 // and are not claimed to be unique to this business.
 // ---------------------------------------------------------------------------
@@ -25,7 +25,7 @@ const FINISHES = [
     tier: "classic",
     tagline: "Ground marble in slaked lime, the original Venetian plaster",
     description:
-      "Marmorino is a lime-based plaster loaded with fine crushed marble aggregate, applied in thin layered coats and burnished to a soft sheen. It reads as a cloudy, mineral surface with gentle depth rather than a flat painted wall. Because it's breathable and naturally antimicrobial, it suits bathrooms, kitchens and feature walls alike.",
+      "Marmorino is a lime-based plaster loaded with fine crushed marble aggregate, applied in thin layered coats and burnished to a soft sheen. It reads as a cloudy, mineral surface with gentle depth rather than a flat painted wall, with fine flecks of marble catching light at close range. Because it's breathable and naturally antimicrobial, it suits bathrooms, kitchens and feature walls alike, and holds up well in higher-moisture rooms.",
     image: "assets/images/finish-marmorino.jpg",
     gallery: ["assets/images/finish-marmorino.jpg", "assets/images/finish-marmorino-macro.jpg"],
   },
@@ -35,7 +35,7 @@ const FINISHES = [
     tier: "premium",
     tagline: "Multi-coat lime putty, trowel-burnished to a glass-like finish",
     description:
-      "Grassello di calce is aged lime putty applied in successive fine coats and compressed with a steel trowel until the surface takes on a deep, glass-like polish. The result catches light the way honed stone does, with subtle cloud-like variation beneath the sheen. It's a slower, more technical finish suited to feature walls and spaces where light is part of the design.",
+      "Grassello di calce is aged lime putty, lime that has slaked for months or years, applied in several fine coats and compressed with a steel trowel until the surface takes on a deep, glass-like polish. The result catches light the way honed stone does, with subtle cloud-like variation moving beneath a hard, reflective sheen. It's a slower, more technical finish, best suited to feature walls, splashbacks and spaces where natural or directional light will play across the surface.",
     image: "assets/images/finish-grassello-detail.jpg",
     gallery: ["assets/images/finish-grassello-detail.jpg", "assets/images/finish-grassello-glossy.jpg"],
   },
@@ -45,7 +45,7 @@ const FINISHES = [
     tier: "premium",
     tagline: "A refined, slightly waxed lime-plaster finish",
     description:
-      "Stucco Italiano sits between Marmorino and Grassello — a fine-grain lime plaster applied in multiple coats and finished with a light wax or soap seal for a soft, refined sheen. It's more forgiving to apply evenly across large wall runs than a full high-gloss polish, while still reading as a premium hand-finished surface.",
+      "Stucco Italiano is a fine-grain lime plaster applied in multiple thin coats and sealed with a light wax or soap finish rather than a full trowel polish. It sits between Marmorino and Grassello in character: softer and more even than a high-gloss finish, with a gentle, consistent sheen rather than dramatic light play. Because it's more forgiving to apply evenly across large areas, it suits full walls and ceilings as well as smaller feature sections.",
     image: null,
     gallery: [],
   },
@@ -55,7 +55,7 @@ const FINISHES = [
     tier: "exotic",
     tagline: "Hand-burnished, multi-coat Marmorino with metallic or mica detail",
     description:
-      "Exotic Marmorino builds on the standard technique with additional hand-worked coats, deeper burnishing, and optional mica flake or metallic mineral additives folded through the mix. The extra coats and hand-finishing time produce a richer, more dimensional surface than standard Marmorino — the tier reserved for feature walls meant to be the room's focal point.",
+      "Exotic Marmorino builds on standard Marmorino with additional hand-worked coats, deeper burnishing and, where specified, mica flake or metallic mineral pigments folded through the mix. The extra coats and finishing time produce a richer, more dimensional surface with visible movement and occasional metallic glint under light. It's the tier reserved for a single feature wall or focal surface meant to anchor a room, rather than broad-area application.",
     image: "assets/images/finish-exotic-dark-column.jpg",
     gallery: ["assets/images/finish-exotic-dark-column.jpg"],
   },
@@ -65,7 +65,7 @@ const FINISHES = [
     tier: "classic",
     tagline: "A rustic, matte, heavily-textured lime finish",
     description:
-      "Tuscano is applied with a looser, more expressive trowel technique that leaves visible movement and texture in the surface rather than smoothing it away. Finished matte rather than polished, it reads as warm and tactile — closer to old-world plasterwork than a contemporary polished wall — and suits rustic, Mediterranean or heritage-leaning interiors.",
+      "Tuscano is a lime plaster applied with a looser, more expressive trowel technique that leaves visible ridges and movement in the surface rather than smoothing them away. Finished matte rather than polished, it reads as warm and tactile, closer to old-world plasterwork than a contemporary polished wall. It suits rustic, Mediterranean or heritage-leaning interiors, and works well across larger wall areas where texture rather than shine is the goal.",
     image: "assets/images/finish-tuscano-swatch.jpg",
     gallery: ["assets/images/finish-tuscano-swatch.jpg", "assets/images/finish-classic-texture.jpg"],
   },
@@ -73,9 +73,9 @@ const FINISHES = [
     slug: "concrete-look",
     name: "Concrete-Look",
     tier: "premium",
-    tagline: "The raw, minimal aesthetic of polished concrete — without the slab",
+    tagline: "The raw, minimal aesthetic of polished concrete, without the slab",
     description:
-      "Concrete-look plaster mimics the flat, industrial character of poured concrete — subtle cloud variation, a matte-to-satin surface, fine hairline movement — while remaining a thin, lightweight coating applied over existing walls or ceilings. It suits the pared-back, architectural interiors currently popular in new-build and renovation work alike.",
+      "Concrete-look plaster is a mineral coating built up in thin coats to mimic the flat, industrial character of poured concrete: subtle cloud variation, fine hairline movement, a matte-to-satin surface. Unlike an actual poured slab it remains a lightweight coating applied directly over existing walls or ceilings, with none of the structural work a real pour would need. It suits the pared-back, architectural interiors common in new-build and renovation work, particularly where a raw, minimal look is wanted without the weight or cost of real concrete.",
     image: null,
     gallery: [],
   },
@@ -85,20 +85,20 @@ const FINISHES = [
     tier: "premium",
     tagline: "A seamless mineral coating for floors, walls and wet areas",
     description:
-      "Microcement is a cement-polymer coating applied in a few millimetres over almost any existing substrate — floors, walls, benchtops, even bathroom niches — to create a continuous, joint-free surface. It's dense, wear-resistant and fully waterproofed when sealed, which makes it a common choice for bathrooms and kitchens as well as feature floors.",
+      "Microcement is a cement-polymer coating applied in a few millimetres over almost any existing substrate, including floors, walls, benchtops and bathroom niches, to create a single continuous, joint-free surface. Its finish sits between raw concrete and polished stone: a fine, slightly textured surface that reads as one seamless plane with no grout lines or seams. Once sealed it's dense, wear-resistant and fully waterproofed, which makes it a common choice for bathrooms, kitchens and feature floors alike.",
     image: "assets/images/process-site-microcement.jpg",
     gallery: ["assets/images/process-site-microcement.jpg"],
   },
 ];
 
 // ---------------------------------------------------------------------------
-// PROJECTS — real completed and in-progress work, pulled from source photos
+// PROJECTS: real completed and in-progress work, pulled from source photos
 // and video frames. No client names, addresses or testimonials are used.
 // ---------------------------------------------------------------------------
 const PROJECTS = [
   {
     slug: "arched-feature-wall",
-    title: "Sydney Residence — Arched Feature Wall",
+    title: "Sydney Residence: Arched Feature Wall",
     category: "Residential",
     finishTags: ["marmorino", "exotic-marmorino"],
     description:
@@ -113,7 +113,7 @@ const PROJECTS = [
   },
   {
     slug: "olive-plaster-bathroom",
-    title: "Sydney Bathroom — Polished Plaster Niche",
+    title: "Sydney Bathroom: Polished Plaster Niche",
     category: "Residential",
     finishTags: ["marmorino"],
     description:
@@ -124,40 +124,40 @@ const PROJECTS = [
   },
   {
     slug: "commercial-fitout-ceiling",
-    title: "Commercial Fit-Out — Polished Ceiling",
+    title: "Commercial Fit-Out: Polished Ceiling",
     category: "Commercial",
     finishTags: ["exotic-marmorino", "concrete-look"],
     description:
-      "A full ceiling and cornice run finished in a dark, cloud-textured polished plaster for a commercial space — showing the same technique scales from feature walls to full-room application.",
+      "A full ceiling and cornice run finished in a dark, cloud-textured polished plaster for a commercial space. It shows the same technique scaling from feature walls to full-room application.",
     image: "assets/images/project-commercial-ceiling.jpg",
     gallery: ["assets/images/project-commercial-ceiling.jpg"],
     featured: true,
   },
   {
     slug: "feature-column",
-    title: "Feature Column — Hand-Burnished Dark Plaster",
+    title: "Feature Column: Hand-Burnished Dark Plaster",
     category: "Residential",
     finishTags: ["exotic-marmorino"],
     description:
-      "A free-standing round column hand-finished in a dark, high-burnish plaster — process shot showing the multi-pass trowel technique mid-application.",
+      "A free-standing round column hand-finished in a dark, high-burnish plaster, a process shot showing the multi-pass trowel technique mid-application.",
     image: "assets/images/process-hand-application.jpg",
     gallery: ["assets/images/process-hand-application.jpg", "assets/images/finish-exotic-dark-column.jpg"],
     featured: true,
   },
   {
     slug: "arched-niche-row-daylight",
-    title: "Sydney Build — Arched Niche Row",
+    title: "Sydney Build: Arched Niche Row",
     category: "Residential",
     finishTags: ["marmorino", "tuscano"],
     description:
-      "A second angle on the same archway build in natural daylight, showing the plasterwork before feature lighting was installed — a clean example of the surface's texture and form on its own.",
+      "A second angle on the same archway build in natural daylight, showing the plasterwork before feature lighting was installed, a clean example of the surface's texture and form on its own.",
     image: "assets/images/project-arch-row.jpg",
     gallery: ["assets/images/project-arch-row.jpg"],
     featured: false,
   },
   {
     slug: "retail-fitout-shelving",
-    title: "Retail Fit-Out — Curved Display Shelving",
+    title: "Retail Fit-Out: Curved Display Shelving",
     category: "Commercial",
     finishTags: ["concrete-look", "microcement"],
     description:
@@ -169,14 +169,14 @@ const PROJECTS = [
 ];
 
 // ---------------------------------------------------------------------------
-// PROCESS — how a project runs, start to finish.
+// PROCESS: how a project runs, start to finish.
 // ---------------------------------------------------------------------------
 const PROCESS_STEPS = [
   {
     step: 1,
     title: "Consult",
     description:
-      "A conversation about the space, the finish you're drawn to, and the practical constraints — surface condition, timeline, budget range.",
+      "A conversation about the space, the finish you're drawn to, and the practical constraints: surface condition, timeline, budget range.",
   },
   {
     step: 2,
@@ -205,7 +205,7 @@ const PROCESS_STEPS = [
 ];
 
 // ---------------------------------------------------------------------------
-// VIDEO_GALLERY — "In the Studio" homepage section. One entry per usable
+// VIDEO_GALLERY: "In the Studio" homepage section. One entry per usable
 // clip; poster is the keeper still already extracted from that same clip
 // so there's never a black box before playback starts.
 // ---------------------------------------------------------------------------
@@ -258,9 +258,9 @@ const VIDEO_GALLERY = [
 ];
 
 // ---------------------------------------------------------------------------
-// PRICING — PLACEHOLDER PRICING based on general Sydney market research.
+// PRICING: PLACEHOLDER PRICING based on general Sydney market research.
 // Verify with George before going live. All figures are $/m² material +
-// labour combined, exclusive of GST, and are indicative only — see the
+// labour combined, exclusive of GST, and are indicative only: see the
 // mandatory disclaimer rendered alongside every estimate.
 // ---------------------------------------------------------------------------
 const PRICING = {
@@ -293,7 +293,7 @@ const PROJECT_TYPES = [
 ];
 
 // ---------------------------------------------------------------------------
-// BUSINESS — confirmed real details only. Anything not explicitly provided
+// BUSINESS: confirmed real details only. Anything not explicitly provided
 // stays marked as a placeholder rather than invented.
 // ---------------------------------------------------------------------------
 const BUSINESS = {

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finishes — Venetian Artistry</title>
-<meta name="description" content="Seven Venetian plaster and decorative finishes — Marmorino, Grassello, Stucco Italiano, Exotic Marmorino, Tuscano, Concrete-look and Microcement.">
+<title>Finishes - Venetian Artistry</title>
+<meta name="description" content="Seven Venetian plaster and decorative finishes: Marmorino, Grassello, Stucco Italiano, Exotic Marmorino, Tuscano, Concrete-look and Microcement.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,17 +56,17 @@
 </nav>
 
 <main id="main">
-  <section class="section" style="padding-bottom: var(--space-8);">
+  <section class="section section-tight-bottom">
     <div class="container">
       <div class="section-head reveal mt-0">
         <span class="eyebrow">Finishes</span>
         <h1 style="font-size: var(--font-size-2xl); margin-top: var(--space-3);">Seven ways to finish a wall</h1>
-        <p>Traditional Venetian lime plaster through to contemporary microcement — each finish suited to different light, texture and application. Descriptions are general guides; every surface is assessed on site before a technique is recommended.</p>
+        <p>Traditional Venetian lime plaster through to contemporary microcement. Each finish is suited to different light, texture and application. Descriptions are general guides; every surface is assessed on site before a technique is recommended.</p>
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top: 0;">
+  <section class="section section-tight-top">
     <div class="container">
       <div class="grid grid-4" id="finishes-grid"></div>
     </div>
@@ -101,7 +101,6 @@
     </div>
     <div class="footer-bottom">
       <span>© <span data-current-year></span> Venetian Artistry. All rights reserved.</span>
-      <span>Site by Claude — indicative demo build.</span>
     </div>
   </div>
 </footer>
@@ -113,7 +112,7 @@
   grid.innerHTML = FINISHES.map((f) => {
     const media = f.image
       ? `<div class="card-media"><img src="${f.image}" alt="${f.name} finish detail" loading="lazy" width="600" height="750"></div>`
-      : `<div class="placeholder-block">[PLACEHOLDER — ${f.name} photo not yet available]</div>`;
+      : `<div class="placeholder-block">[PLACEHOLDER: ${f.name} photo not yet available]</div>`;
     return `
     <a class="card card-link reveal" href="finishes/finish.html?slug=${f.slug}">
       ${media}
