@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Finish — Venetian Artistry</title>
+<meta name="description" content="Venetian plaster finish detail — technique, character and ideal application.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="brand">
+      <img src="../assets/logo/venetian-artistry-logo.jpg" alt="Venetian Artistry logo">
+      <span class="brand-name">Venetian Artistry<span class="by-line">by George</span></span>
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../finishes.html">Finishes</a></li>
+        <li><a href="../process.html">Process</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <a href="../estimate.html" class="btn btn-primary">Get an Estimate</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="nav-mobile" aria-label="Mobile">
+  <div class="nav-mobile-head">
+    <span class="brand-name font-display">Venetian Artistry</span>
+    <button class="nav-mobile-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../projects.html">Projects</a></li>
+    <li><a href="../finishes.html">Finishes</a></li>
+    <li><a href="../process.html">Process</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <a href="../estimate.html" class="btn btn-primary btn-block">Get an Estimate</a>
+</nav>
+
+<main id="main">
+  <section class="section">
+    <div class="container">
+      <a href="../finishes.html" class="muted" style="font-size: var(--font-size-sm);">← All Finishes</a>
+      <div class="detail-hero" style="margin-top: var(--space-6);">
+        <div class="reveal">
+          <span class="eyebrow" id="finish-tier"></span>
+          <h1 id="finish-name" style="font-size: var(--font-size-2xl); margin-top: var(--space-3);"></h1>
+          <p id="finish-tagline" class="muted" style="font-size: var(--font-size-md); margin-top: var(--space-2);"></p>
+          <p id="finish-description" style="margin-top: var(--space-6);"></p>
+          <div class="hero-actions" style="margin-top: var(--space-8);">
+            <a href="../estimate.html" class="btn btn-accent">Estimate This Finish</a>
+            <a href="../contact.html" class="btn btn-secondary">Ask a Question</a>
+          </div>
+        </div>
+        <div class="detail-media reveal" id="finish-hero-media"></div>
+      </div>
+
+      <div id="finish-gallery-wrap" style="margin-top: var(--space-16);">
+        <h3 class="reveal">Gallery</h3>
+        <div class="grid grid-3 reveal" id="finish-gallery" style="margin-top: var(--space-6);"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name font-display">Venetian Artistry<span class="by-line">by George</span></span>
+        <p>Hand-applied Venetian plaster and decorative finishes for Sydney homes and commercial spaces.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../finishes.html">Finishes</a></li>
+          <li><a href="../process.html">Process</a></li>
+          <li><a href="../estimate.html">Estimate</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+61450787322">0450 787 322</a></li>
+          <li><a href="https://www.instagram.com/venetian.artistry" target="_blank" rel="noopener">@venetian.artistry</a></li>
+          <li>Sydney, NSW</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-current-year></span> Venetian Artistry. All rights reserved.</span>
+      <span>Site by Claude — indicative demo build.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug");
+  const finish = FINISHES.find((f) => f.slug === slug) || FINISHES[0];
+
+  document.getElementById("page-title").textContent = `${finish.name} — Venetian Artistry`;
+  document.getElementById("finish-tier").textContent = `${finish.tier} tier`;
+  document.getElementById("finish-name").textContent = finish.name;
+  document.getElementById("finish-tagline").textContent = finish.tagline;
+  document.getElementById("finish-description").textContent = finish.description;
+
+  const heroMedia = document.getElementById("finish-hero-media");
+  heroMedia.innerHTML = finish.image
+    ? `<img src="../${finish.image}" alt="${finish.name} finish detail">`
+    : `<div class="placeholder-block">[PLACEHOLDER — ${finish.name} photo not yet available]</div>`;
+
+  const galleryWrap = document.getElementById("finish-gallery-wrap");
+  const gallery = document.getElementById("finish-gallery");
+  const extraImages = (finish.gallery || []).filter((src) => src !== finish.image);
+  if (extraImages.length) {
+    gallery.innerHTML = extraImages
+      .map((src) => `<div class="card-media" style="border-radius: var(--radius-md); overflow:hidden;"><img src="../${src}" alt="${finish.name} detail" loading="lazy"></div>`)
+      .join("");
+  } else {
+    galleryWrap.style.display = "none";
+  }
+
+  initScrollReveal();
+</script>
+</body>
+</html>

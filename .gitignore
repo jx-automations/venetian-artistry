@@ -1,0 +1,9 @@
+# Raw Instagram exports — original, uncompressed source files.
+# Kept locally for reference only; never pushed to GitHub.
+# Curated/optimized versions live in assets/images and assets/videos and ARE committed.
+raw-source/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Venetian Artistry</title>
+<meta name="description" content="Get in touch with Venetian Artistry — Sydney Venetian plaster and decorative finishes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="assets/logo/venetian-artistry-logo.jpg" alt="Venetian Artistry logo">
+      <span class="brand-name">Venetian Artistry<span class="by-line">by George</span></span>
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="finishes.html">Finishes</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="estimate.html" class="btn btn-primary">Get an Estimate</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="nav-mobile" aria-label="Mobile">
+  <div class="nav-mobile-head">
+    <span class="brand-name font-display">Venetian Artistry</span>
+    <button class="nav-mobile-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="finishes.html">Finishes</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="estimate.html" class="btn btn-primary btn-block">Get an Estimate</a>
+</nav>
+
+<main id="main">
+  <section class="section">
+    <div class="container">
+      <div class="detail-hero" style="align-items: start;">
+        <div class="reveal">
+          <span class="eyebrow">Contact</span>
+          <h1 style="font-size: var(--font-size-2xl); margin-top: var(--space-3);">Let's talk about your walls</h1>
+          <p style="margin-top: var(--space-6);">Call, message on Instagram, or send the form and we'll get back to you.</p>
+
+          <ul style="margin-top: var(--space-8); display:flex; flex-direction:column; gap: var(--space-4);">
+            <li>
+              <span class="eyebrow" style="display:block; margin-bottom: var(--space-1);">Phone</span>
+              <a href="tel:+61450787322" style="font-family: var(--font-display); font-size: var(--font-size-lg);">0450 787 322</a>
+            </li>
+            <li>
+              <span class="eyebrow" style="display:block; margin-bottom: var(--space-1);">Instagram</span>
+              <a href="https://www.instagram.com/venetian.artistry" target="_blank" rel="noopener" style="font-family: var(--font-display); font-size: var(--font-size-lg);">@venetian.artistry</a>
+            </li>
+            <li>
+              <span class="eyebrow" style="display:block; margin-bottom: var(--space-1);">Service Area</span>
+              <span style="font-family: var(--font-display); font-size: var(--font-size-lg);">Sydney, NSW</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal">
+          <form id="contact-form" novalidate>
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" data-required>
+              <span class="error-msg">Please enter your name.</span>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" data-required>
+              <span class="error-msg">Please enter a valid email address.</span>
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-field">
+              <label for="message">Tell us about your project</label>
+              <textarea id="message" name="message" maxlength="500" data-required></textarea>
+              <div class="char-count" data-char-count>0 / 500</div>
+              <span class="error-msg">Please add a short description of your project.</span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          </form>
+          <div class="form-success">
+            <h3 style="font-size: var(--font-size-lg);">Thanks — we'll be in touch.</h3>
+            <p class="muted" style="margin-top: var(--space-3);">This is a demo form and isn't connected to a live inbox yet. For a real enquiry right now, call <a href="tel:+61450787322" style="text-decoration:underline;">0450 787 322</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name font-display">Venetian Artistry<span class="by-line">by George</span></span>
+        <p>Hand-applied Venetian plaster and decorative finishes for Sydney homes and commercial spaces.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="finishes.html">Finishes</a></li>
+          <li><a href="process.html">Process</a></li>
+          <li><a href="estimate.html">Estimate</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+61450787322">0450 787 322</a></li>
+          <li><a href="https://www.instagram.com/venetian.artistry" target="_blank" rel="noopener">@venetian.artistry</a></li>
+          <li>Sydney, NSW</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-current-year></span> Venetian Artistry. All rights reserved.</span>
+      <span>Site by Claude — indicative demo build.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

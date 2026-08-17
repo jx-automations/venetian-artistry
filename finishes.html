@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finishes — Venetian Artistry</title>
+<meta name="description" content="Seven Venetian plaster and decorative finishes — Marmorino, Grassello, Stucco Italiano, Exotic Marmorino, Tuscano, Concrete-look and Microcement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="assets/logo/venetian-artistry-logo.jpg" alt="Venetian Artistry logo">
+      <span class="brand-name">Venetian Artistry<span class="by-line">by George</span></span>
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="finishes.html">Finishes</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="estimate.html" class="btn btn-primary">Get an Estimate</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="nav-mobile" aria-label="Mobile">
+  <div class="nav-mobile-head">
+    <span class="brand-name font-display">Venetian Artistry</span>
+    <button class="nav-mobile-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="finishes.html">Finishes</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="estimate.html" class="btn btn-primary btn-block">Get an Estimate</a>
+</nav>
+
+<main id="main">
+  <section class="section" style="padding-bottom: var(--space-8);">
+    <div class="container">
+      <div class="section-head reveal mt-0">
+        <span class="eyebrow">Finishes</span>
+        <h1 style="font-size: var(--font-size-2xl); margin-top: var(--space-3);">Seven ways to finish a wall</h1>
+        <p>Traditional Venetian lime plaster through to contemporary microcement — each finish suited to different light, texture and application. Descriptions are general guides; every surface is assessed on site before a technique is recommended.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="grid grid-4" id="finishes-grid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name font-display">Venetian Artistry<span class="by-line">by George</span></span>
+        <p>Hand-applied Venetian plaster and decorative finishes for Sydney homes and commercial spaces.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="finishes.html">Finishes</a></li>
+          <li><a href="process.html">Process</a></li>
+          <li><a href="estimate.html">Estimate</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+61450787322">0450 787 322</a></li>
+          <li><a href="https://www.instagram.com/venetian.artistry" target="_blank" rel="noopener">@venetian.artistry</a></li>
+          <li>Sydney, NSW</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-current-year></span> Venetian Artistry. All rights reserved.</span>
+      <span>Site by Claude — indicative demo build.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const grid = document.getElementById("finishes-grid");
+  grid.innerHTML = FINISHES.map((f) => {
+    const media = f.image
+      ? `<div class="card-media"><img src="${f.image}" alt="${f.name} finish detail" loading="lazy" width="600" height="750"></div>`
+      : `<div class="placeholder-block">[PLACEHOLDER — ${f.name} photo not yet available]</div>`;
+    return `
+    <a class="card card-link reveal" href="finishes/finish.html?slug=${f.slug}">
+      ${media}
+      <div class="card-body">
+        <span class="eyebrow">${f.tier}</span>
+        <h3>${f.name}</h3>
+        <p>${f.tagline}</p>
+      </div>
+    </a>`;
+  }).join("");
+  initScrollReveal();
+</script>
+</body>
+</html>
