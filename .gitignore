@@ -7,3 +7,5 @@ raw-source/
 .DS_Store
 Thumbs.db
 .vscode/
+
+.vercel
