@@ -69,6 +69,7 @@
     <div class="container hero-content">
       <span class="eyebrow">Sydney · Venetian Plaster &amp; Decorative Finishes</span>
       <h1>Walls worth looking twice at.</h1>
+      <p class="hero-subhead">Venetian plaster &amp; decorative finishes crafted for distinctive interiors across Sydney.</p>
       <p>Hand-applied Venetian plaster, polished lime and microcement finishes for homes and commercial spaces across Sydney, by George, Venetian Artistry.</p>
       <div class="hero-actions">
         <a href="estimate.html" class="btn btn-accent">Get an Indicative Estimate</a>
@@ -87,6 +88,21 @@
     </div>
   </section>
 
+  <!-- ============================= FEATURED PROJECTS ============================= -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Projects</span>
+        <h2>Recent work</h2>
+        <p>A selection of residential and commercial plasterwork completed across Sydney.</p>
+      </div>
+      <div class="grid grid-4" id="featured-projects"></div>
+      <div class="text-center" style="margin-top: var(--space-12);">
+        <a href="projects.html" class="btn btn-secondary">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= FEATURED FINISHES ============================= -->
   <section class="section section-alt">
     <div class="container">
@@ -102,17 +118,23 @@
     </div>
   </section>
 
-  <!-- ============================= FEATURED PROJECTS ============================= -->
+  <!-- ============================= BEFORE / AFTER ============================= -->
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Projects</span>
-        <h2>Recent work</h2>
-        <p>A selection of residential and commercial plasterwork completed across Sydney.</p>
+        <span class="eyebrow">Before &amp; After</span>
+        <h2>See the transformation</h2>
       </div>
-      <div class="grid grid-4" id="featured-projects"></div>
-      <div class="text-center" style="margin-top: var(--space-12);">
-        <a href="projects.html" class="btn btn-secondary">View All Projects</a>
+      <div class="ba-slider reveal">
+        <div class="ba-frame" id="ba-frame">
+          <img class="ba-img ba-after" src="assets/images/after.jpg" alt="After: finished polished plaster wall">
+          <div class="ba-clip" id="ba-clip">
+            <img class="ba-img ba-before" src="assets/images/before.jpg" alt="Before: raw unfinished wall">
+          </div>
+          <div class="ba-handle" id="ba-handle" role="slider" tabindex="0" aria-label="Drag to compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+          <span class="ba-label ba-label-before">Before</span>
+          <span class="ba-label ba-label-after">After</span>
+        </div>
       </div>
     </div>
   </section>

@@ -1,7 +1,8 @@
 /*
   main.js — shared site behavior: mobile nav, scroll-reveal, footer year,
   "In the Studio" video gallery (lazy-load, play/pause on visibility,
-  reduced-motion guard, lightbox), and contact form validation.
+  reduced-motion guard, lightbox), before/after slider (homepage only),
+  and contact form validation.
   No dependencies, no build step — plain ES6+.
 */
 
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initFooterYear();
   initStudioGallery();
+  initBeforeAfterSlider();
   initContactForm();
   markCurrentNavLink();
 });
@@ -185,6 +187,57 @@ function initStudioGallery() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
   });
+}
+
+/* ---------------------------------------------------------------- */
+/* Before/after comparison slider (homepage only)                     */
+/* ---------------------------------------------------------------- */
+function initBeforeAfterSlider() {
+  const frame = document.getElementById("ba-frame");
+  const clip = document.getElementById("ba-clip");
+  const handle = document.getElementById("ba-handle");
+  if (!frame || !clip || !handle) return; // not on this page
+
+  const setPosition = (percent) => {
+    const p = Math.min(100, Math.max(0, percent));
+    clip.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+    handle.style.left = `${p}%`;
+    handle.setAttribute("aria-valuenow", String(Math.round(p)));
+  };
+
+  const percentFromEvent = (clientX) => {
+    const rect = frame.getBoundingClientRect();
+    return ((clientX - rect.left) / rect.width) * 100;
+  };
+
+  let dragging = false;
+  const start = (e) => {
+    dragging = true;
+    frame.setPointerCapture?.(e.pointerId);
+  };
+  const move = (e) => {
+    if (dragging) setPosition(percentFromEvent(e.clientX));
+  };
+  const end = () => {
+    dragging = false;
+  };
+
+  handle.addEventListener("pointerdown", start);
+  frame.addEventListener("pointerdown", (e) => {
+    start(e);
+    setPosition(percentFromEvent(e.clientX));
+  });
+  frame.addEventListener("pointermove", move);
+  frame.addEventListener("pointerup", end);
+  frame.addEventListener("pointercancel", end);
+
+  handle.addEventListener("keydown", (e) => {
+    const current = Number(handle.getAttribute("aria-valuenow")) || 50;
+    if (e.key === "ArrowLeft") setPosition(current - 5);
+    else if (e.key === "ArrowRight") setPosition(current + 5);
+  });
+
+  setPosition(50);
 }
 
 /* ---------------------------------------------------------------- */

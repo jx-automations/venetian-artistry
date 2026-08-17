@@ -32,6 +32,51 @@ document.addEventListener("DOMContentLoaded", () => {
   bindNav();
   updateUI();
 
+  // ---- Step transitions: brief GSAP fade/slide between panels, degrading
+  // to an instant switch if GSAP failed to load or prefers-reduced-motion
+  // is set (same defensive pattern as initScrollReveal in main.js). ----
+  function withTransition(applyStateChange) {
+    const outgoing = root.querySelector(".estimator-panel.active");
+    const gsapReady = typeof gsap !== "undefined";
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!gsapReady || prefersReduced || !outgoing) {
+      applyStateChange();
+      return;
+    }
+
+    gsap.to(outgoing, {
+      opacity: 0,
+      y: -8,
+      duration: 0.2,
+      ease: "power2.out",
+      onComplete: () => {
+        gsap.set(outgoing, { clearProps: "opacity,transform" });
+        applyStateChange();
+        const incoming = root.querySelector(".estimator-panel.active");
+        if (incoming) {
+          gsap.from(incoming, { opacity: 0, y: 8, duration: 0.25, ease: "power2.out" });
+        }
+      },
+    });
+  }
+
+  // Single-select steps (project type, tier, property type) auto-advance a
+  // short beat after a selection, so the choice's highlight registers
+  // before the panel transitions away — no separate "Next" click needed.
+  function advanceAfterSelect() {
+    window.setTimeout(() => {
+      withTransition(() => {
+        if (state.step < totalSteps) {
+          state.step += 1;
+          updateUI();
+        } else {
+          computeAndShowResult();
+        }
+      });
+    }, 280);
+  }
+
   // ---- Step 1: project type ----
   function renderProjectTypeOptions() {
     const wrap = root.querySelector("#project-type-options");
@@ -47,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         wrap.querySelectorAll("[data-project-type]").forEach((b) => b.setAttribute("aria-pressed", "false"));
         btn.setAttribute("aria-pressed", "true");
         updateUI();
+        advanceAfterSelect();
       });
     });
   }
@@ -97,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         wrap.querySelectorAll("[data-tier]").forEach((b) => b.setAttribute("aria-pressed", "false"));
         btn.setAttribute("aria-pressed", "true");
         updateUI();
+        advanceAfterSelect();
       });
     });
   }
@@ -111,32 +158,39 @@ document.addEventListener("DOMContentLoaded", () => {
         wrap.querySelectorAll("[data-property-type]").forEach((b) => b.setAttribute("aria-pressed", "false"));
         btn.setAttribute("aria-pressed", "true");
         updateUI();
+        advanceAfterSelect();
       });
     });
   }
 
   // ---- Navigation ----
   function bindNav() {
+    // Next is only ever shown on the area/slider step (see updateUI) — the
+    // other steps auto-advance on selection instead.
     nextBtn.addEventListener("click", () => {
       if (!canAdvance()) return;
-      if (state.step < totalSteps) {
-        state.step += 1;
-        updateUI();
-      } else {
-        computeAndShowResult();
-      }
+      withTransition(() => {
+        if (state.step < totalSteps) {
+          state.step += 1;
+          updateUI();
+        } else {
+          computeAndShowResult();
+        }
+      });
     });
     backBtn.addEventListener("click", () => {
-      if (showingResult) {
-        showingResult = false;
-        resultPanel.classList.remove("active");
-        updateUI();
-        return;
-      }
-      if (state.step > 1) {
-        state.step -= 1;
-        updateUI();
-      }
+      withTransition(() => {
+        if (showingResult) {
+          showingResult = false;
+          resultPanel.classList.remove("active");
+          updateUI();
+          return;
+        }
+        if (state.step > 1) {
+          state.step -= 1;
+          updateUI();
+        }
+      });
     });
   }
 
@@ -160,7 +214,12 @@ document.addEventListener("DOMContentLoaded", () => {
     stepDots.forEach((dot, i) => dot.classList.toggle("done", i < state.step));
     backBtn.disabled = state.step === 1;
     backBtn.style.visibility = state.step === 1 ? "hidden" : "visible";
-    nextBtn.textContent = state.step === totalSteps ? "See My Estimate" : "Next";
+    // Every other step auto-advances on selection (see advanceAfterSelect);
+    // only the area/slider step has no discrete "selection" to trigger that,
+    // so it's the only one that still needs an explicit continue action.
+    const showNext = state.step === 2;
+    nextBtn.style.display = showNext ? "" : "none";
+    nextBtn.textContent = "Continue";
     nextBtn.disabled = !canAdvance();
   }
 
