@@ -154,9 +154,24 @@ function initStudioGallery() {
   const openLightbox = (src, poster) => {
     lightboxVideo.src = src;
     lightboxVideo.poster = poster;
-    lightboxVideo.muted = true;
     lightboxVideo.loop = true;
-    lightboxVideo.play().catch(() => {});
+    // Sound on by default: this call happens synchronously inside the
+    // card's click handler, i.e. as a direct result of a user gesture, so
+    // browsers allow unmuted autoplay here. The little icon in the corner
+    // is a mute toggle from this point, not an unmute prompt.
+    lightboxVideo.muted = false;
+    lightboxVideo.volume = 1;
+    const playPromise = lightboxVideo.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        // Unmuted autoplay was blocked anyway (rare given the gesture
+        // above) — fall back to muted so playback still starts, and let
+        // the icon reflect the actual state rather than lying about it.
+        lightboxVideo.muted = true;
+        lightboxVideo.play().catch(() => {});
+        updateSoundLabel();
+      });
+    }
     lightbox.classList.add("open");
     updateSoundLabel();
   };
