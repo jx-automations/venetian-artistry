@@ -277,4 +277,20 @@ function initContactForm() {
     message.addEventListener("input", update);
     update();
   }
+
+  // Auto-grow the message textarea instead of a manual drag handle (see
+  // .form-field textarea in style.css for the matching min/max-height and
+  // transition). Re-measures from "auto" on every input so scrollHeight
+  // reflects the current content, not a previously forced height.
+  if (message) {
+    const MAX_TEXTAREA_HEIGHT = 420; // ~15 lines; matches the CSS max-height backstop
+    const autoGrowMessage = () => {
+      message.style.height = "auto";
+      const next = Math.min(message.scrollHeight, MAX_TEXTAREA_HEIGHT);
+      message.style.height = `${next}px`;
+      message.style.overflowY = message.scrollHeight > MAX_TEXTAREA_HEIGHT ? "auto" : "hidden";
+    };
+    message.addEventListener("input", autoGrowMessage);
+    autoGrowMessage(); // correct initial height (e.g. autofill or back-forward cache restoring text)
+  }
 }

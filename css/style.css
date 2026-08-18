@@ -98,15 +98,19 @@ p.wide { max-width: none; }
 .grid { display: grid; gap: var(--space-8); }
 .grid-2 { grid-template-columns: repeat(1, 1fr); }
 .grid-3 { grid-template-columns: repeat(1, 1fr); }
-.grid-4 { grid-template-columns: repeat(1, 1fr); }
+.grid-4 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
 @media (min-width: 768px) {
   .grid-2 { grid-template-columns: repeat(2, 1fr); }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 1024px) {
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } /* minmax(0,1fr), not bare 1fr —
+    bare 1fr behaves like minmax(auto,1fr), letting one card's column grow wider than its
+    siblings if its content (e.g. an unbreakable word in the title) has a larger min-content
+    width, which throws off that card's aspect-ratio-derived image height relative to the rest
+    of the row. minmax(0,1fr) forces truly equal columns regardless of content. */
 }
 
 /* ============================= BUTTONS ============================= */
@@ -115,7 +119,13 @@ p.wide { max-width: none; }
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: var(--space-4) var(--space-8);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+  line-height: 1; /* without this, .btn inherits body's line-height:1.7, and flex's
+    align-items:center centers that inflated line box instead of the glyph itself —
+    the actual cause of the text looking vertically off-center despite equal padding */
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -188,7 +198,7 @@ p.wide { max-width: none; }
 
 .nav-desktop { display: none; }
 .nav-desktop ul { display: flex; gap: var(--space-8); }
-.nav-desktop a {
+.nav-desktop a:not(.btn) {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.02em;
@@ -196,7 +206,7 @@ p.wide { max-width: none; }
   border-bottom: 1px solid transparent;
   transition: border-color var(--duration-fast) var(--ease-standard);
 }
-.nav-desktop a:hover, .nav-desktop a[aria-current="page"] { border-color: var(--color-accent); }
+.nav-desktop a:not(.btn):hover, .nav-desktop a:not(.btn)[aria-current="page"] { border-color: var(--color-accent); }
 .nav-desktop .btn { margin-left: var(--space-4); }
 
 .nav-toggle {
@@ -296,6 +306,10 @@ p.wide { max-width: none; }
 
 /* ============================= CARDS ============================= */
 .card {
+  display: flex; /* so any extra height a taller grid row forces onto a card (CSS Grid's
+                     default align-items:stretch) lands in .card-body below, never distorting
+                     .card-media's aspect-ratio-locked image height */
+  flex-direction: column;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -303,17 +317,19 @@ p.wide { max-width: none; }
   transition: box-shadow var(--duration-base) var(--ease-standard), transform var(--duration-base) var(--ease-standard);
 }
 .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.card-media { aspect-ratio: var(--card-aspect-ratio); overflow: hidden; background: var(--color-bg-alt); }
+.card-media { aspect-ratio: var(--card-aspect-ratio); overflow: hidden; background: var(--color-bg-alt); flex-shrink: 0; }
 .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--duration-slow) var(--ease-standard); }
 .card:hover .card-media img { transform: scale(1.04); }
-.card-body { padding: var(--space-6); }
+.card-body { padding: var(--space-6); flex: 1; }
 .card-body .eyebrow { display: block; margin-bottom: var(--space-2); }
 .card-body h3 { font-size: var(--font-size-md); } /* mobile-first: one size tier down from desktop */
 @media (min-width: 768px) {
   .card-body h3 { font-size: var(--font-size-lg); } /* restore full size on tablet/desktop */
 }
 .card-body p { margin-top: var(--space-2); color: var(--color-text-muted); font-size: var(--font-size-sm); }
-.card-link { display: block; }
+.card-link { display: flex; flex-direction: column; } /* .card-link is always paired with .card
+  (which sets the same display); restated here so it doesn't fight .card's flex layout when this
+  class is applied to an <a> or <button> instead of a <div> */
 
 .placeholder-block {
   aspect-ratio: var(--card-aspect-ratio);
@@ -622,7 +638,13 @@ p.wide { max-width: none; }
   font-family: var(--font-body);
   font-size: var(--font-size-base);
 }
-.form-field textarea { min-height: 140px; resize: vertical; }
+.form-field textarea {
+  min-height: 96px;  /* ~3-4 lines by default; grows from here via JS on input */
+  max-height: 420px; /* ~15 lines cap; CSS-level backstop for the JS-enforced cap */
+  resize: none;      /* no manual drag handle — sizing is auto-grow only */
+  overflow-y: hidden; /* JS flips this to auto once content exceeds max-height */
+  transition: height var(--duration-base) var(--ease-standard);
+}
 .form-field .error-msg { display: none; color: var(--color-error); font-size: var(--font-size-xs); margin-top: var(--space-2); }
 .form-field.invalid input, .form-field.invalid textarea { border-color: var(--color-error); }
 .form-field.invalid .error-msg { display: block; }
