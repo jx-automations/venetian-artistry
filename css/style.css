@@ -518,6 +518,12 @@ p.wide { max-width: none; }
   padding: var(--space-6);
 }
 .lightbox.open { display: flex; }
+@media (min-width: 1024px) {
+  /* On desktop, keep the site dimly visible behind the backdrop instead of a
+     near-opaque black fill, so it reads clearly as "click outside the video
+     to close" rather than a full-screen takeover. Video itself is untouched. */
+  .lightbox { background: rgba(10,9,8,0.55); }
+}
 .lightbox-inner { position: relative; max-width: 420px; width: 100%; }
 .lightbox-inner video { width: 100%; border-radius: var(--radius-md); aspect-ratio: 9/16; background: #000; }
 .lightbox-close, .lightbox-sound {
