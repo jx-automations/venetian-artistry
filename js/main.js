@@ -105,7 +105,13 @@ function markCurrentNavLink() {
 /* - Click/tap opens a lightbox with a sound-on toggle                 */
 /* ---------------------------------------------------------------- */
 function initStudioGallery() {
-  const cards = document.querySelectorAll(".studio-card");
+  // index.html calls this a second time after injecting the studio cards
+  // (see the comment there), and by then the cards already exist, so the
+  // guard below is essential — without it, every listener below (including
+  // the sound toggle) gets attached twice, and two toggle listeners on the
+  // same click cancel each other out (mute -> unmute -> mute again), which
+  // is exactly why clicking the sound icon looked like it did nothing.
+  const cards = document.querySelectorAll(".studio-card:not([data-gallery-bound])");
   if (!cards.length) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -168,6 +174,7 @@ function initStudioGallery() {
   };
 
   cards.forEach((card) => {
+    card.setAttribute("data-gallery-bound", "");
     card.addEventListener("click", () => {
       const video = card.querySelector("video");
       const src = video.dataset.src || video.src;
@@ -175,6 +182,12 @@ function initStudioGallery() {
       openLightbox(src, poster);
     });
   });
+
+  // The lightbox itself is a single static element (not re-created when new
+  // studio cards are injected), so these listeners only ever need attaching
+  // once — guarded separately from the per-card guard above.
+  if (lightbox.dataset.lightboxBound) return;
+  lightbox.dataset.lightboxBound = "true";
 
   closeBtn.addEventListener("click", closeLightbox);
   lightbox.addEventListener("click", (e) => {
